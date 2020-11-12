@@ -6,23 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Code Quiz</title>
-    <link rel="reset" href="./reset.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="reset" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Staatliches">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 </head>
 
 <body>
     <div class="wrapper">
         <header>
             <h1>Coding Quiz Challenge</h1>
+            <p>So you think you can code? Start the quiz below to see how you rank amongst your peers! </p>
         </header>
+        <div class="startBtn">
+            <button>Start Quiz</button>
+        </div>
         <div class="card">
             <div class="card-header">
                 <h2>Question:</h2>
             </div>
-            <div class="card-footer">
-                <button class="button">Next</button>
+            <div class="card-body">
+                <div class="question"></div>
+                <div class="answer-choices">
+                    <ol type="a">
+                        
+                    </ol>
+                </div>
+
+
             </div>
+            <h3 class="time"></h3>
         </div>
+
+        <div id="results"></div>
+
     </div>
     <script src="./script.js"></script>
 </body>

@@ -24,10 +24,10 @@ body {
 
 header {
     text-align: center;
-    padding: 20px;
-    padding-top: 0px;
     color: hsl(206, 17%, 28%);
-    
+    border-style: dashed;
+    border-color:  #081C15;
+    border-radius: 20px;
 }
 
 h1 {
@@ -35,11 +35,15 @@ h1 {
     padding: 20px;
     font-family: var(--header);
     font-size: 40px;
+    letter-spacing: 2px;
     animation-name: heading;
     animation-duration: 5s;
-    border-style: dashed;
-    border-color:  #081C15;
-    border-radius: 20px;
+    
+}
+
+header p {
+  font-size: 20px;
+  font-weight: 400;
 }
 .card {
     background-color: #B7E4C7;
@@ -53,28 +57,48 @@ h1 {
     padding: 30px 40px;
   }
 
-.card-body {
-    min-height: 200px;
+  .card-header {
+    font-family: var(--header);
+    letter-spacing: 2px;
   }
   
-.card-footer {
-    display: flex;
-    justify-content: flex-end;
-  }
+.startBtn {
+  display: flex;
+  justify-content: center;
+}
 
-.button {
+button {
     background-color: #74C69D;
     border: none;
     color: white;
-    font-family: var(--p);
+    width: 400px;
+    font-family: var(--header);
+    letter-spacing: 2px;
     padding: 15px 32px;
     border-radius: 20px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 25px;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+.answer-choices .option {
+  border: 1px solid #081C15;
+  border-radius: 10px;
+  padding: 8px 15px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.time {
+  color:#081C15;
+  text-align: end;
+  font-family: var(--p);
+  letter-spacing: 2px;
 }
 
 

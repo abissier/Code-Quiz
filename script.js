@@ -1,29 +1,66 @@
-//start button
+var timeEl = document.querySelector(".time");
+var quizContainer = document.querySelector(".card-body");
+var resultsContainer = document.getElementById("results");
+var startBtn = document.querySelector(".startBtn");
+var questionSpot = document.querySelector(".question");
+var answerList = document.querySelectorAll("ol");
 
-//create a countdown timer that begins when start button is clicked
+//event listner to start quiz
+startBtn.addEventListener("click", startQuiz);
+
+//start quiz function calls the following functions
+function startQuiz() {
+    setTime();
+    renderQuestion();
+    renderOptions();
+    checkAnswer();
+}
+
+//countdown timer function that starts at 60 seconds
+var secondsLeft = 60;
+
+function setTime() {
+    var timerInterval = setInterval(function () {
+        secondsLeft--;
+        if (secondsLeft > 10) {
+            timeEl.textContent = secondsLeft + " seconds remaining";
+        } else if (secondsLeft > 0 && secondsLeft < 10) {
+            timeEl.textContent = secondsLeft + " seconds left, hurry!";
+        } else if (secondsLeft == 0) {
+            clearInterval(timerInterval);
+            timeEl.textContent = "";
+            deliverScore();
+        }
+
+    }, 1000);
+}
 
 // store score variable
-var score = 0; 
+var score = 0;
 
-//  array of questions for  quiz game.
+//keep track of question number user is on 
+var questionNumber = 0;
+var answerNumber = 0;
+
+//  array of question objects for  quiz game.
 var questions = [
     {
         q: "Where in the HTML document is the JavaScript file linked?",
         a: {
             a: "In the body",
             b: "In the head ",
-            c: "In the header", 
+            c: "In the header",
             d: "In the footer"
         },
         correctAnswer: "a"
     },
     {
-        q: "How to you call a function named 'myFunction' ?",
+        q: "How do you call a function named 'myFunction' ?",
         a: {
             a: "call myFunction()",
             b: "myfunction()",
-            c: ":myFunction", 
-            d: "myFunction()",
+            c: ":myFunction",
+            d: "myFunction()"
         },
         correctAnswer: "d"
     },
@@ -46,7 +83,7 @@ var questions = [
             d: "i < 10"
         },
         correctAnswer: "d"
-    }, 
+    },
     {
         q: "What is the splice() method?",
         a: {
@@ -59,11 +96,38 @@ var questions = [
     }
 ];
 
+// renderQuestion function to loop through array of questions 
+function renderQuestion() {
 
-// check if a === correctAnswer, then add points, else subtract time from timer
+    for (var i = 0; i < questions.length; i++) {
+        questionSpot.textContent = questions[i].q;
+        questionNumber++;
+        renderOptions();
 
-//go to next question 
 
-//when all questions completed OR timer reaches 0, game is over
 
-//save initials and highscore
+
+    }
+}
+
+
+//renderOptions function to display answer choices 
+function renderOptions() {
+    for (var i = 0; i < questions.length; i++) {
+        answerList.createElement("li");
+        answerList.li.textContent = questions[i].a;
+        answerNumber++;
+    }
+
+    // checkAnswer function check if a === correctAnswer, then add points, else subtract time from timer
+    if (response == questions[i].correctAnswer) {
+        score++;
+    } else {
+        score--;
+        secondsLeft - 5;
+    }
+}
+
+// create function deliverScore 
+
+// function deliverScore
