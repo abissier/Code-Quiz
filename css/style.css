@@ -7,8 +7,11 @@ html,
 body,
 .wrapper {
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -17,7 +20,6 @@ body {
   }
 
 .wrapper {
-    padding-top: 30px;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -32,7 +34,6 @@ header {
 
 h1 {
     color:#40916C;
-    padding: 20px;
     font-family: var(--header);
     font-size: 40px;
     letter-spacing: 2px;
@@ -41,11 +42,17 @@ h1 {
     
 }
 
-header p {
+p {
   font-size: 20px;
   font-weight: 400;
 }
-.card {
+
+.startBtn {
+  display: flex;
+  justify-content: center;
+}
+
+#question-container {
     background-color: #B7E4C7;
     border-radius: 20px;
     border-width: 5px;
@@ -53,25 +60,21 @@ header p {
     color: #081C15;
     font-size: 18px;
     margin: 0 auto;
-    max-width: 1200px;
+    width: 800px;
+    max-width: 80%;
     padding: 30px 40px;
   }
 
-  .card-header {
-    font-family: var(--header);
-    letter-spacing: 2px;
+.btn-grid {
+    display: grid;
+    margin: 20px 0px;
   }
-  
-.startBtn {
-  display: flex;
-  justify-content: center;
-}
 
 button {
     background-color: #74C69D;
     border: none;
     color: white;
-    width: 400px;
+    width: 800px,
     font-family: var(--header);
     letter-spacing: 2px;
     padding: 15px 32px;
@@ -81,17 +84,14 @@ button {
     font-size: 25px;
     margin: 4px 2px;
     cursor: pointer;
+} 
+
+button:hover {
+  border: 2px solid #081C15;
 }
 
-.answer-choices .option {
-  border: 1px solid #081C15;
-  border-radius: 10px;
-  padding: 8px 15px;
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
+.hide {
+  display: none;
 }
 
 .time {
@@ -101,6 +101,15 @@ button {
   letter-spacing: 2px;
 }
 
+img {
+  width: 500px;
+  height: 600px;
+}
+
+.img-display {
+  display: flex;
+  justify-content: space-between;
+}
 
 @keyframes heading {
     0% {color: #74C69D};

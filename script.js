@@ -1,19 +1,26 @@
-var timeEl = document.querySelector(".time");
-var quizContainer = document.querySelector(".card-body");
-var resultsContainer = document.getElementById("results");
 var startBtn = document.querySelector(".startBtn");
-var questionSpot = document.querySelector(".question");
-var answerList = document.querySelectorAll("ol");
+var imgEl = document.querySelector(".img-display");
+var timeEl = document.querySelector(".time");
+var quizContainer = document.getElementById("question-container");
+var questionSpot = document.querySelector("#question");
+var answerSpot = document.getElementById("answer-buttons");
+
+var resultsContainer = document.getElementById("results");
+
+
+//keep track of question number user is on 
+var questionNumber = 0;
 
 //event listner to start quiz
 startBtn.addEventListener("click", startQuiz);
 
 //start quiz function calls the following functions
 function startQuiz() {
+    startBtn.classList.add("hide");
+    quizContainer.classList.remove("hide");
+    imgEl.classList.add("hide");
     setTime();
     renderQuestion();
-    renderOptions();
-    checkAnswer();
 }
 
 //countdown timer function that starts at 60 seconds
@@ -38,96 +45,101 @@ function setTime() {
 // store score variable
 var score = 0;
 
-//keep track of question number user is on 
-var questionNumber = 0;
-var answerNumber = 0;
-
 //  array of question objects for  quiz game.
 var questions = [
     {
-        q: "Where in the HTML document is the JavaScript file linked?",
-        a: {
-            a: "In the body",
-            b: "In the head ",
-            c: "In the header",
-            d: "In the footer"
-        },
-        correctAnswer: "a"
+        question: "Where in the HTML document is the JavaScript file linked?",
+        answers: [
+            { text: "In the body", correct: true },
+            { text: "In the head", correct: false },
+            { text: "In the header", correct: false },
+            { text: "In the footer", correct: false }
+        ]
     },
     {
-        q: "How do you call a function named 'myFunction' ?",
-        a: {
-            a: "call myFunction()",
-            b: "myfunction()",
-            c: ":myFunction",
-            d: "myFunction()"
-        },
-        correctAnswer: "d"
+        question: "How do you call a function named 'myFunction' ?",
+        answers: [
+            { text: "call myFunction()", correct: false },
+            { text: "myfunction()", correct: false },
+            { text: ":myFunction", correct: false },
+            { text: "myFunction()", correct: true }
+        ]
     },
     {
-        q: "What is the indexof('Peas') in the following example: var vegetables = ['Carrots', 'Peas', 'Lettuce', 'Tomatoes']?",
-        a: {
-            a: "1",
-            b: "2",
-            c: "3",
-            d: "4"
-        },
-        correctAnswer: "a"
+        question: "What is the indexof('Peas') in the following example: var vegetables = ['Carrots', 'Peas', 'Lettuce', 'Tomatoes']?",
+        answers: [
+            { text: "1", correct: true },
+            { text: "2", correct: false },
+            { text: "3", correct: false },
+            { text: "4", correct: false }
+        ]
     },
     {
-        q: "What is the loop condition in the following example: 'for (var i = 0; i < 10; i++) ?",
-        a: {
-            a: "not applicable",
-            b: "i++",
-            c: "var i = 0",
-            d: "i < 10"
-        },
-        correctAnswer: "d"
+        question: "What is the loop condition in the following example: 'for (var i = 0; i < 10; i++) ?",
+        answers: [
+            { text: "not applicable", correct: false },
+            { text: "i++", correct: false },
+            { text: "var i = 0", correct: false },
+            { text: "i < 10", correct: true }
+        ]
     },
     {
-        q: "What is the splice() method?",
-        a: {
-            a: "It takes each item of an array and creates one string",
-            b: "It changes content of an array by removing or replacing existing elements and/or adding new elements in place",
-            c: "It divides an array into two arrays",
-            d: "It is used to is used to join two or more strings within an array"
-        },
-        correctAnswer: "b"
+        question: "What is the splice() method?",
+        answers: [
+            { text: "It takes each item of an array and creates one string", correct: false },
+            { text: "It changes content of an array by removing or replacing existing elements and/or adding new elements in place", correct: true },
+            { text: "It divides an array into two arrays", correct: false },
+            { text: "It is used to is used to join two or more strings within an array", correct: false }
+        ]
     }
-];
+]
 
 // renderQuestion function to loop through array of questions 
 function renderQuestion() {
-
-    for (var i = 0; i < questions.length; i++) {
-        questionSpot.textContent = questions[i].q;
-        questionNumber++;
-        renderOptions();
-
-
-
-
-    }
+    questionSpot.textContent = questions[questionNumber].question;
+    renderOptions(questionNumber);
 }
 
+function renderOptions(questionNumber) {
+    questions[questionNumber].answers.forEach(answer => {
+        var button = document.createElement("button")
+        button.textContent = answer.text
+        button.classList.add('btn')
+        button.addEventListener("click", checkAnswer)
+        answerSpot.appendChild(button)
 
-//renderOptions function to display answer choices 
-function renderOptions() {
-    for (var i = 0; i < questions.length; i++) {
-        answerList.createElement("li");
-        answerList.li.textContent = questions[i].a;
-        answerNumber++;
-    }
+    })
+}
 
-    // checkAnswer function check if a === correctAnswer, then add points, else subtract time from timer
-    if (response == questions[i].correctAnswer) {
-        score++;
+function getNextQuestion() {
+    questionSpot.textContent = "";
+    answerSpot.textContent = "";
+    if (questionNumber < questions.length - 1) {
+        questionNumber += 1;
+        renderQuestion();
     } else {
-        score--;
-        secondsLeft - 5;
+        deliverScore();
     }
+
+
 }
 
-// create function deliverScore 
+function checkAnswer(event) {
+    for (var i = 0; i < questions[questionNumber].answers.length; i++) {
+        if (event.target.innerText === questions[questionNumber].answers[i].text) { 
+            if (questions[questionNumber].answers[i].correct === true) {
+                score++;
+            } else {
+                secondsLeft - 5;
+            }
+        }
+    }
+    getNextQuestion();
+}
 
-// function deliverScore
+
+function deliverScore() {
+    resultsContainer.classList.remove("hide");
+    resultsContainer.textContent = score;
+
+}

@@ -18,28 +18,25 @@
             <h1>Coding Quiz Challenge</h1>
             <p>So you think you can code? Start the quiz below to see how you rank amongst your peers! </p>
         </header>
-        <div class="startBtn">
+        <div class="startBtn ">
             <button>Start Quiz</button>
         </div>
-        <div class="card">
-            <div class="card-header">
-                <h2>Question:</h2>
-            </div>
-            <div class="card-body">
-                <div class="question"></div>
-                <div class="answer-choices">
-                    <ol type="a">
-                        
-                    </ol>
+        <div class="container">
+            <div id="question-container" class="hide">
+                <div id="question">Question</div>
+                <div id="answer-buttons" class="btn-grid">
+             
                 </div>
-
-
             </div>
+
             <h3 class="time"></h3>
+
+            <div id="results" class="hide"></div>
         </div>
-
-        <div id="results"></div>
-
+        <div class="img-display">
+            <img src="./plant2.jpg" alt="green plant">
+            <img src="./plant3.jpg" alt="green plant">
+        </div>
     </div>
     <script src="./script.js"></script>
 </body>
