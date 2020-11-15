@@ -7,8 +7,7 @@ var answerSpot = document.getElementById("answer-buttons");
 var resultsContainer = document.getElementById("results");
 var saveButton = document.getElementById("save");
 var userName = document.getElementById("user-name");
-var scoreBoard= document.getElementById("scores");
-
+var scores = document.getElementById("scores");
 var endGame = document.getElementById("end-game");
 
 //keep track of question number user is on 
@@ -153,26 +152,18 @@ function deliverScore() {
 //event listner that runs function to display score
 saveButton.addEventListener("click", function (event) {
     endGame.classList.add("hide");
-    scoreBoard.classList.remove("hide");
+    scores.classList.remove("hide");
+    secondsLeft = 0;
 
-//store info as user object
-var user = {
-    userName: userName.value.trim(),
-    score: score,
-};
+    //store info as user object
+    var user = {
+        userName: userName.value.trim(),
+        score: score,
+    };
 
-localStorage.setItem("user", JSON.stringify(user));
-scoreBoard.textContent= user;
-
-
+    localStorage.setItem("user", JSON.stringify(user));
+    var scoresContent = document.createElement("p");
+    scoresContent.textContent = user.userName + ": " + user.score;
+    scores.appendChild(scoresContent);
 })
 
-// var email = document.querySelector("#email").value;
-//   var password = document.querySelector("#password").value;
-
-// var userInfo= localStorage.getItem("user", userName);
-// var userScore= localStorage.getItem("user", score);
-
-//     localStorage.setItem("email", email);
-//     localStorage.setItem("password", password);
-//     renderLastRegistered();
