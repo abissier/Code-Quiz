@@ -1,6 +1,6 @@
 :root {
-    --header: Staatliches; 
-    --p: Montserrat;
+   --header: Staatliches; 
+   --p: Montserrat;
 }
 
 html,
@@ -8,38 +8,38 @@ body,
 .wrapper {
   height: 100%;
   width: 100%;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
+  margin: 0px;
+  padding: 0px;
+  background-color: rgb(247,247,247);
 }
 
 body {
-    font-family: var(--p);
-    background-color: #f9fbfd;
-  }
+  font-family: var(--p);
+  background-color: #f9fbfd;
+  margin: 20px;
+  padding: 20px;
+}
 
 .wrapper {
-    padding-left: 20px;
-    padding-right: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 header {
-    text-align: center;
-    color: hsl(206, 17%, 28%);
-    border-style: dashed;
-    border-color:  #081C15;
-    border-radius: 20px;
+  text-align: center;
+  color: hsl(206, 17%, 28%);
+  border-style: dashed;
+  border-color:  #081C15;
+  border-radius: 20px;
 }
 
 h1 {
-    color:#40916C;
-    font-family: var(--header);
-    font-size: 40px;
-    letter-spacing: 2px;
-    animation-name: heading;
-    animation-duration: 5s;
-    
+  color:#40916C;
+  font-family: var(--header);
+  font-size: 40px;
+  letter-spacing: 2px;
+  animation: heading infinite;
+  animation-duration: 5s; 
 }
 
 p {
@@ -53,52 +53,68 @@ p {
 }
 
 #question-container {
-    background-color: #B7E4C7;
-    border-radius: 20px;
-    border-width: 5px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
-    color: #081C15;
-    font-size: 18px;
-    margin: 0 auto;
-    width: 800px;
-    max-width: 80%;
-    padding: 30px 40px;
-  }
+  background-color: #B7E4C7;
+  border-radius: 20px;
+  border-width: 5px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
+  color: #081C15;
+  font-size: 18px;
+  margin: 0 auto;
+  width: 800px;
+  max-width: 80%;
+  padding: 30px 40px;
+}
 
 .btn-grid {
-    display: grid;
-    margin: 20px 0px;
-  }
+  display: grid;
+  margin: 20px 0px;
+ }
 
 button {
-    background-color: #74C69D;
-    border: none;
-    color: white;
-    width: 800px,
-    font-family: var(--header);
-    letter-spacing: 2px;
-    padding: 15px 32px;
-    border-radius: 20px;
-    text-align: center;
-    display: inline-block;
-    font-size: 25px;
-    margin: 4px 2px;
-    cursor: pointer;
+  background-color: #74C69D;
+  border: none;
+  color: white;
+  width: 800px;
+  font-family: var(--header);
+  letter-spacing: 2px;
+  padding: 15px 32px;
+  border-radius: 20px;
+  text-align: center;
+  display: inline-block;
+  font-size: 25px;
+  margin: 4px 2px;
+  cursor: pointer;
 } 
 
 button:hover {
   border: 2px solid #081C15;
 }
 
-.hide {
-  display: none;
-}
-
 .time {
   color:#081C15;
   text-align: end;
+  margin-right: 10%;
   font-family: var(--p);
   letter-spacing: 2px;
+}
+
+input {
+  width: 50%;
+  border-radius: 15px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.input-group {
+  display: flex;
+  justify-content: center;
+}
+
+#save,
+#results {
+  display: flex;
+  justify-content: center;
 }
 
 img {
@@ -110,6 +126,11 @@ img {
   display: flex;
   justify-content: space-between;
 }
+
+.hide {
+  display: none;
+}
+
 
 @keyframes heading {
     0% {color: #74C69D};

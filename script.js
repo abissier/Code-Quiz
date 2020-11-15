@@ -4,9 +4,12 @@ var timeEl = document.querySelector(".time");
 var quizContainer = document.getElementById("question-container");
 var questionSpot = document.querySelector("#question");
 var answerSpot = document.getElementById("answer-buttons");
-
 var resultsContainer = document.getElementById("results");
+var saveButton = document.getElementById("save");
+var userName = document.getElementById("user-name");
+var scoreBoard= document.getElementById("scores");
 
+var endGame = document.getElementById("end-game");
 
 //keep track of question number user is on 
 var questionNumber = 0;
@@ -45,7 +48,7 @@ function setTime() {
 // store score variable
 var score = 0;
 
-//  array of question objects for  quiz game.
+//  array of question objects 
 var questions = [
     {
         question: "Where in the HTML document is the JavaScript file linked?",
@@ -94,12 +97,13 @@ var questions = [
     }
 ]
 
-// renderQuestion function to loop through array of questions 
+// Displays question from questions array for the current question number, passes questionnumber to renderoptions
 function renderQuestion() {
     questionSpot.textContent = questions[questionNumber].question;
     renderOptions(questionNumber);
 }
 
+// displays answer choices, creates button element for each answer, eventlistner for button that is clicked
 function renderOptions(questionNumber) {
     questions[questionNumber].answers.forEach(answer => {
         var button = document.createElement("button")
@@ -111,6 +115,7 @@ function renderOptions(questionNumber) {
     })
 }
 
+// deletes question and answer text, if there is another question call the renderquestion function, otherwise deliverscore
 function getNextQuestion() {
     questionSpot.textContent = "";
     answerSpot.textContent = "";
@@ -120,26 +125,54 @@ function getNextQuestion() {
     } else {
         deliverScore();
     }
-
-
 }
 
+//match the answer chosen to innertext and check if correct is true.
+// if true add points, else subtract time from secondsLeft. call getnextquestion function
 function checkAnswer(event) {
     for (var i = 0; i < questions[questionNumber].answers.length; i++) {
-        if (event.target.innerText === questions[questionNumber].answers[i].text) { 
+        if (event.target.innerText === questions[questionNumber].answers[i].text) {
             if (questions[questionNumber].answers[i].correct === true) {
                 score++;
             } else {
-                secondsLeft - 5;
+                secondsLeft -= 5;
             }
         }
     }
     getNextQuestion();
 }
 
-
+// is called when secondleft ===0 or no more questions left 
 function deliverScore() {
-    resultsContainer.classList.remove("hide");
-    resultsContainer.textContent = score;
-
+    endGame.classList.remove("hide");
+    imgEl.classList.remove("hide");
+    timeEl.classList.add("hide");
+    resultsContainer.textContent = "You scored " + score + " questions correctly";
 }
+
+//event listner that runs function to display score
+saveButton.addEventListener("click", function (event) {
+    endGame.classList.add("hide");
+    scoreBoard.classList.remove("hide");
+
+//store info as user object
+var user = {
+    userName: userName.value.trim(),
+    score: score,
+};
+
+localStorage.setItem("user", JSON.stringify(user));
+scoreBoard.textContent= user;
+
+
+})
+
+// var email = document.querySelector("#email").value;
+//   var password = document.querySelector("#password").value;
+
+// var userInfo= localStorage.getItem("user", userName);
+// var userScore= localStorage.getItem("user", score);
+
+//     localStorage.setItem("email", email);
+//     localStorage.setItem("password", password);
+//     renderLastRegistered();
